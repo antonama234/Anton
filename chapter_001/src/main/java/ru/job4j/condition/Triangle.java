@@ -4,7 +4,7 @@ public class Triangle {
     private Point a;
     private Point b;
     private Point c;
-    double poluper;
+    private double poluper;
 
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
@@ -13,8 +13,7 @@ public class Triangle {
     }
 
     public double period(double ab, double ac, double bc) {
-       poluper = (ab + ac + bc) / 2;
-       return poluper;
+        return  (ab + ac + bc) / 2;
     }
 
     public double area() {
@@ -24,15 +23,12 @@ public class Triangle {
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
-           rsl = Math.sqrt(poluper * (poluper - ab) * (poluper - ac) * (poluper - bc));
+           rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;
     }
 
     private boolean exist(double ab, double ac, double bc) {
-        if ((ab + ac) > bc || (ab + bc) > ac || (ac + bc) > ab) {
-            return true;
-        }
-        return false;
+        return ((ab + ac) > bc || (ab + bc) > ac || (ac + bc) > ab);
     }
 }
