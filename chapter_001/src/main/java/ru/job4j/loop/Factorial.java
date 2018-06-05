@@ -1,14 +1,15 @@
 package ru.job4j.loop;
 
 public class Factorial {
-    int faktor = 1;
+
     public int calc(int n) {
+        int faktor = 1;
         if (n > 0) {
-            for (n = 1; n < 6; n++) {
-                faktor = faktor * n;
+            for (int index = 1; index <= n ; index++) {
+                faktor = faktor * index;
             }
 
-        } else if (n == 0) {
+        } else {
             return 1;
         }
         return faktor;
