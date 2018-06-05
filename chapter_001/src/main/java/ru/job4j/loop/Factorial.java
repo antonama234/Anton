@@ -8,9 +8,6 @@ public class Factorial {
             for (int index = 1; index <= n ; index++) {
                 faktor = faktor * index;
             }
-
-        } else {
-            return 1;
         }
         return faktor;
     }
