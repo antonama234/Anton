@@ -5,9 +5,7 @@ public class MatrixCheck {
         boolean result = true;
         for (int i = 0; i != data.length; i++) {
             for (int j = 0; j != data.length; j++) {
-                if (data[0][0] != data[data.length - 1 - j][data.length - 1 - j]) {
-                    result = false;
-                } else if (data[0][data.length - 1] != data[i][data.length - 1 - i]) {
+                if (data[0][0] != data[data.length - 1 - j][data.length - 1 - j] || data[0][data.length - 1] != data[i][data.length - 1 - i]) {
                     result = false;
                 }
             }
