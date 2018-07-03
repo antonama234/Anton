@@ -17,7 +17,7 @@ public class FindLoopTest {
     }
 
     @Test
-    public void WhenArrayHasLengh7Then0() {
+    public void whenArrayHasLengh7Then0() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {7, 1, 2, 8, 11, 18};
         int value = 7;
@@ -27,7 +27,7 @@ public class FindLoopTest {
     }
 
     @Test
-    public void enArrayHasLengh7ThenNotFound() {
+    public void wenArrayHasLengh7ThenNotFound() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {16, 5};
         int value = 7;
