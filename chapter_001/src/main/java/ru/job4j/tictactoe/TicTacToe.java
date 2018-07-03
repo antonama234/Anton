@@ -60,7 +60,7 @@ public class TicTacToe extends Application {
     }
 
     private void checkWinner() {
-        if (this.logic.isWinnerX()) {
+         if (this.logic.isWinnerX()) {
             this.showAlert("Победили Крестики! Начните новую Игру!");
         } else if (this.logic.isWinnerO()) {
             this.showAlert("Победили Нолики! Начните новую Игру!");
@@ -97,10 +97,12 @@ public class TicTacToe extends Application {
                             this.buildMarkO(rect.getX(), rect.getY(), 50)
                     );
                 }
+                this.checkWinner();
                 this.checkState();
             }
         };
     }
+
 
     private Group buildGrid() {
         Group panel = new Group();
