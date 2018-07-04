@@ -24,6 +24,7 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
+
         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0)
                || this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1)
                || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
