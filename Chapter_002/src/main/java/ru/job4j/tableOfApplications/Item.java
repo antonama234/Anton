@@ -24,10 +24,9 @@ public class Item {
         return this.id;
     }
 
-    public String setId(String id) {
-        return this.id;
+    public void setId(String id) {
+        this.id = id;
     }
-
     public String getDescription() {
         return this.description;
     }
