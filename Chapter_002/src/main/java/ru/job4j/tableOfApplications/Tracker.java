@@ -20,7 +20,7 @@ public class Tracker {
     public void update(String id, Item item) {
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
-                item.setId(this.generateId());
+                item.setId(id);
                 this.items[index] = item;
                 break;
             }
@@ -33,13 +33,13 @@ public class Tracker {
                 this.items[index] = null;
             }
         }
-        Item[] newArray = new Item[99];
+        Item[] newArray = new Item[items.length - 1];
         System.arraycopy(items, 0, newArray, 0, 99);
     }
 
-    public Item[] findAll() {
-        Item[] result = new Item[position];
-        for (int i = 0; i != position; i++) {
+    public Item[] getAll() {
+        Item[] result = new Item[this.position];
+        for (int i = 0; i != this.position; i++) {
             result[i] = this.items[i];
         }
         return this.items;
