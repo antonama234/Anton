@@ -39,7 +39,27 @@ public class TrackerTest {
         Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
         Item second = tracker.add(new Item("testId2", "testName2", "testDescription2", 1234L));
         Item third = tracker.add(new Item("testId3", "testName3", "testDescription3", 12345L));
-        tracker.getAll();
-        assertThat(tracker.getAll(), arrayContainingInAnyOrder(first, second, third));
+        Item[] result = tracker.getAll();
+        assertThat(result, arrayContainingInAnyOrder(first, second, third));
+    }
+
+    @Test
+    public void whenFindByNameThenFindName() {
+        Tracker tracker = new Tracker();
+        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        Item second = tracker.add(new Item("testId2", "testName", "testDescription2", 1234L));
+        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3", 12345L));
+        Item[] result = tracker.findByName("testName");
+        assertThat(result, arrayContainingInAnyOrder(first, second));
+    }
+
+    @Test
+    public void whenFindByIdThenFindSameItem() {
+        Tracker tracker = new Tracker();
+        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        Item second = tracker.add(new Item("testId2", "testName", "testDescription2", 1234L));
+        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3", 12345L));
+        Item result = tracker.findById("testId2");
+        assertThat(result, is(second));
     }
 }

@@ -1,6 +1,7 @@
 package ru.job4j.tableOfApplications;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public class Tracker {
     private final Item[] items = new Item[100];
@@ -42,19 +43,19 @@ public class Tracker {
         for (int i = 0; i != this.position; i++) {
             result[i] = this.items[i];
         }
-        return this.items;
+        return Arrays.copyOf(this.items, position);
     }
 
     public Item[] findByName(String key) {
         int i = 0;
-        Item[] result = null;
+        Item[] result = new Item[items.length];
         for (Item item : items) {
             if(item != null && item.getName().equals(key)) {
                 result[i] = item;
                 i++;
             }
         }
-        return result;
+        return Arrays.copyOf(this.items, i);
     }
 
     public Item findById(String id) {
