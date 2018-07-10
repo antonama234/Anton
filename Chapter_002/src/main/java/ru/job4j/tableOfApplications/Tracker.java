@@ -29,15 +29,15 @@ public class Tracker {
     }
 
     public void delete(String id) {
-        int foundPosition = 0;
+        int foundPosition;
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
                 foundPosition = index;
+                System.arraycopy(items, foundPosition + 1, items, foundPosition, position - foundPosition);
+                this.position--;
                 break;
             }
         }
-        System.arraycopy(items, foundPosition + 1, items, foundPosition, position - foundPosition);
-        this.position--;
     }
 
     public Item[] getAll() {
