@@ -29,20 +29,18 @@ public class Tracker {
     }
 
     public void delete(String id) {
+        int foundPosition = 0;
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
-                this.items[index] = null;
+                foundPosition = index;
+                break;
             }
         }
-        Item[] newArray = new Item[items.length - 1];
-        System.arraycopy(items, 0, newArray, 0, 99);
+        System.arraycopy(items, foundPosition + 1, items, foundPosition, position - foundPosition);
+        this.position--;
     }
 
     public Item[] getAll() {
-        Item[] result = new Item[this.position];
-        for (int i = 0; i != this.position; i++) {
-            result[i] = this.items[i];
-        }
         return Arrays.copyOf(this.items, position);
     }
 
@@ -55,7 +53,7 @@ public class Tracker {
                 i++;
             }
         }
-        return Arrays.copyOf(this.items, i);
+        return Arrays.copyOf(result, i);
     }
 
     public Item findById(String id) {

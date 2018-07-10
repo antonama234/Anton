@@ -28,9 +28,12 @@ public class TrackerTest {
     @Test
     public void whenDeleteIdThenItemNull() {
         Tracker tracker = new Tracker();
-        Item item = new Item("testId", "testName", "testDescription", 123L);
-        tracker.delete(item.getId());
-        assertThat(null, is(tracker.findById(item.getId())));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        Item second = tracker.add(new Item("testId2", "testName2", "testDescription2", 1234L));
+        Item third = tracker.add(new Item("testId3", "testName3", "testDescription3", 12345L));
+        Item fourth = tracker.add(new Item("testId4", "testName3", "testDescription3", 12345L));
+        tracker.delete("testId2");
+        assertThat(tracker.getAll(), arrayContainingInAnyOrder(first, third, fourth));
     }
 
     @Test
