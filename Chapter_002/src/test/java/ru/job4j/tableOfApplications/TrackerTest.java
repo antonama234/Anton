@@ -65,4 +65,22 @@ public class TrackerTest {
         Item result = tracker.findById(second.getId());
         assertThat(result, is(second));
     }
+
+    @Test
+    public void whenUpdateItemThenReturnTrue() {
+        Tracker tracker = new Tracker();
+        Item previous = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        Item next = new Item("testId1", "testName1", "testDescription1", 1234L);
+        next.setId(previous.getId());
+        boolean result = tracker.update(previous.getId(), next);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenDeleteItemThenReturnTrue() {
+        Tracker tracker = new Tracker();
+        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        boolean result = tracker.delete(first.getId());
+        assertThat(result, is(true));
+    }
 }
