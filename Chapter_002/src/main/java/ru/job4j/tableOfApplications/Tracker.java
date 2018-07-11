@@ -18,26 +18,32 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public void update(String id, Item item) {
+    public boolean update(String id, Item item) {
+        boolean temp = false;
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
                 item.setId(id);
                 this.items[index] = item;
+                temp = false;
                 break;
             }
         }
+        return temp;
     }
 
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean temp = false;
         int foundPosition;
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
                 foundPosition = index;
                 System.arraycopy(items, foundPosition + 1, items, foundPosition, position - foundPosition);
                 this.position--;
+                temp = true;
                 break;
             }
         }
+        return temp;
     }
 
     public Item[] getAll() {
