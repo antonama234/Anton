@@ -1,4 +1,4 @@
-package ru.job4j.tableOfApplications;
+package ru.job4j.tableofapplications;
 
 public class StartUI {
     private static final String ADD = "1";
@@ -23,17 +23,17 @@ public class StartUI {
             String answer = this.input.ask("Введите пункт меню:");
             if (ADD.equals(answer)) {
                 this.createItem();
-            } else if(GETALL.equals(answer)) {
+            } else if (GETALL.equals(answer)) {
                 this.allItems();
-            } else if(UPDATE.equals(answer)) {
+            } else if (UPDATE.equals(answer)) {
                 this.updateItem();
-            } else if(DELETE.equals(answer)) {
+            } else if (DELETE.equals(answer)) {
                 this.deleteItem();
-            } else if(FINDBYID.equals(answer)) {
+            } else if (FINDBYID.equals(answer)) {
                 this.findId();
-            } else if(FINDBYNAME.equals(answer)) {
+            } else if (FINDBYNAME.equals(answer)) {
                 this.findName();
-            }else if (EXIT.equals(answer)) {
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             }
         }
@@ -41,8 +41,8 @@ public class StartUI {
 
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
-        String name = this.input.ask("Введите имя заявки:");
-        String description = this.input.ask("Введите описание заявки:");
+        String name = this.input.ask("Введите имя заявки: ");
+        String description = this.input.ask("Введите описание заявки: ");
         String id = new String();
         Item item = new Item(id, name, description);
         this.tracker.add(item);
@@ -51,7 +51,7 @@ public class StartUI {
 
     private void allItems() {
         System.out.println("---------------------- Заявки ----------------------");
-        for(Item items : tracker.getAll()) {
+        for (Item items : tracker.getAll()) {
             System.out.println("ID заявки: " + items.getId());
             System.out.println("Наименование заявки: " + items.getName());
             System.out.println("Описание заявки: " + items.getDescription());

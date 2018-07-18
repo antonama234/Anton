@@ -1,4 +1,4 @@
-package ru.job4j.tableOfApplications;
+package ru.job4j.tableofapplications;
 
 import java.util.Random;
 import java.util.Arrays;
@@ -54,7 +54,7 @@ public class Tracker {
         int i = 0;
         Item[] result = new Item[items.length];
         for (Item item : items) {
-            if(item != null && item.getName().equals(key)) {
+            if (item != null && item.getName().equals(key)) {
                 result[i] = item;
                 i++;
             }

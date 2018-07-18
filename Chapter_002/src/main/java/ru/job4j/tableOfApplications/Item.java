@@ -1,4 +1,4 @@
-package ru.job4j.tableOfApplications;
+package ru.job4j.tableofapplications;
 
 public class Item {
     public String name;
@@ -7,7 +7,7 @@ public class Item {
     public long created;
     public String[] comments;
 
-    public Item (String id, String name, String description) {
+    public Item(String id, String name, String description) {
             // String[] comments
         this.name = name;
         this.id = id;
