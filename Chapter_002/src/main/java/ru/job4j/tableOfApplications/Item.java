@@ -7,7 +7,7 @@ public class Item {
     public long created;
     public String[] comments;
 
-    public Item (String id, String name, String description, long created) {
+    public Item (String id, String name, String description) {
             // String[] comments
         this.name = name;
         this.id = id;
