@@ -1,4 +1,4 @@
-package ru.job4j.tableOfApplications;
+package ru.job4j.tableofapplications;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("testId", "testName", "testDescription", 123L);
+        Item item = new Item("testId", "testName", "testDescription");
         tracker.add(item);
         assertThat(tracker.getAll()[0], is(item));
     }
@@ -18,8 +18,8 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item next = new Item("testId1", "testName1", "testDescription1", 1234L);
+        Item previous = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item next = new Item("testId1", "testName1", "testDescription1");
         next.setId(previous.getId());
         tracker.update(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is("testName1"));
@@ -28,10 +28,10 @@ public class TrackerTest {
     @Test
     public void whenDeleteItemThenArrayWillShorter() {
         Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item second = tracker.add(new Item("testId2", "testName2", "testDescription2", 1234L));
-        Item third = tracker.add(new Item("testId3", "testName3", "testDescription3", 12345L));
-        Item fourth = tracker.add(new Item("testId4", "testName3", "testDescription3", 12345L));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item second = tracker.add(new Item("testId2", "testName2", "testDescription2"));
+        Item third = tracker.add(new Item("testId3", "testName3", "testDescription3"));
+        Item fourth = tracker.add(new Item("testId4", "testName3", "testDescription3"));
         tracker.delete(second.getId());
         assertThat(tracker.getAll(), arrayContainingInAnyOrder(first, third, fourth));
     }
@@ -39,9 +39,9 @@ public class TrackerTest {
     @Test
     public void whenArrayThreeItemsThenReturnAll() {
         Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item second = tracker.add(new Item("testId2", "testName2", "testDescription2", 1234L));
-        Item third = tracker.add(new Item("testId3", "testName3", "testDescription3", 12345L));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item second = tracker.add(new Item("testId2", "testName2", "testDescription2"));
+        Item third = tracker.add(new Item("testId3", "testName3", "testDescription3"));
         Item[] result = tracker.getAll();
         assertThat(result, arrayContainingInAnyOrder(first, second, third));
     }
@@ -49,9 +49,9 @@ public class TrackerTest {
     @Test
     public void whenFindByNameThenFindName() {
         Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item second = tracker.add(new Item("testId2", "testName", "testDescription2", 1234L));
-        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3", 12345L));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item second = tracker.add(new Item("testId2", "testName", "testDescription2"));
+        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3"));
         Item[] result = tracker.findByName("testName");
         assertThat(result, arrayContainingInAnyOrder(first, second));
     }
@@ -59,9 +59,9 @@ public class TrackerTest {
     @Test
     public void whenFindByIdThenFindSameItem() {
         Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item second = tracker.add(new Item("testId2", "testName", "testDescription2", 1234L));
-        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3", 12345L));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item second = tracker.add(new Item("testId2", "testName", "testDescription2"));
+        Item third = tracker.add(new Item("testId3", "otherName", "testDescription3"));
         Item result = tracker.findById(second.getId());
         assertThat(result, is(second));
     }
@@ -69,8 +69,8 @@ public class TrackerTest {
     @Test
     public void whenUpdateItemThenReturnTrue() {
         Tracker tracker = new Tracker();
-        Item previous = tracker.add(new Item("testId", "testName", "testDescription", 123L));
-        Item next = new Item("testId1", "testName1", "testDescription1", 1234L);
+        Item previous = tracker.add(new Item("testId", "testName", "testDescription"));
+        Item next = new Item("testId1", "testName1", "testDescription1");
         next.setId(previous.getId());
         boolean result = tracker.update(previous.getId(), next);
         assertThat(result, is(true));
@@ -79,7 +79,7 @@ public class TrackerTest {
     @Test
     public void whenDeleteItemThenReturnTrue() {
         Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("testId", "testName", "testDescription", 123L));
+        Item first = tracker.add(new Item("testId", "testName", "testDescription"));
         boolean result = tracker.delete(first.getId());
         assertThat(result, is(true));
     }
