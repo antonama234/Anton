@@ -1,4 +1,4 @@
-package ru.job4j.tableofapplications;
+package ru.job4j.tracker;
 
 public interface Input {
     String ask(String question);

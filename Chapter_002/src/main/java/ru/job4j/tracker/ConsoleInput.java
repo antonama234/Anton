@@ -1,4 +1,4 @@
-package ru.job4j.tableofapplications;
+package ru.job4j.tracker;
 
 import java.util.Scanner;
 
