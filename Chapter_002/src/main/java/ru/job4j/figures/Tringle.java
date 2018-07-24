@@ -4,9 +4,13 @@ public class Tringle implements Shape {
     @Override
     public String draw() {
         StringBuilder picture = new StringBuilder();
-        picture.append("   X   " + "\n");
-        picture.append("  XXX  " + "\n");
-        picture.append(" XXXXX " + "\n");
+        String ls = System.lineSeparator();
+        picture.append("   X   ");
+        picture.append(ls);
+        picture.append("  XXX  ");
+        picture.append(ls);
+        picture.append(" XXXXX ");
+        picture.append(ls);
         picture.append("XXXXXXX");
         return picture.toString();
     }

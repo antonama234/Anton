@@ -8,14 +8,19 @@ public class SquareTest {
     @Test
     public void whenDrawSquare() {
         Square square = new Square();
+        String ls = System.lineSeparator();
         assertThat(
             square.draw(),
             is(
                     new StringBuilder()
-                            .append("XXXXX" + "\n")
-                            .append("X   X" + "\n")
-                            .append("X   X" + "\n")
-                            .append("X   X" + "\n")
+                            .append("XXXXX")
+                            .append(ls)
+                            .append("X   X")
+                            .append(ls)
+                            .append("X   X")
+                            .append(ls)
+                            .append("X   X")
+                            .append(ls)
                             .append("XXXXX")
                             .toString()
             )

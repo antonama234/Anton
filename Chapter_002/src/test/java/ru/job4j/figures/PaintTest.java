@@ -10,6 +10,7 @@ public class PaintTest {
     @Test
     public void whenDrawSquare() {
         PrintStream stdout = System.out;
+        String ls = System.lineSeparator();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         new Paint().draw(new Square());
@@ -17,11 +18,16 @@ public class PaintTest {
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append("XXXXX" + "\n")
-                                .append("X   X" + "\n")
-                                .append("X   X" + "\n")
-                                .append("X   X" + "\n")
-                                .append("XXXXX" + "\r\n")
+                                .append("XXXXX")
+                                .append(ls)
+                                .append("X   X")
+                                .append(ls)
+                                .append("X   X")
+                                .append(ls)
+                                .append("X   X")
+                                .append(ls)
+                                .append("XXXXX")
+                                .append(ls)
                                 .toString()
                 )
         );

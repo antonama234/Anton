@@ -4,10 +4,15 @@ public class Square implements Shape {
     @Override
     public String draw() {
         StringBuilder picture = new StringBuilder();
-        picture.append("XXXXX" + "\n");
-        picture.append("X   X" + "\n");
-        picture.append("X   X" + "\n");
-        picture.append("X   X" + "\n");
+        String ls = System.lineSeparator();
+        picture.append("XXXXX");
+        picture.append(ls);
+        picture.append("X   X");
+        picture.append(ls);
+        picture.append("X   X");
+        picture.append(ls);
+        picture.append("X   X");
+        picture.append(ls);
         picture.append("XXXXX");
         return picture.toString();
     }
