@@ -29,7 +29,7 @@ public class StartUITest {
         Item first = tracker.add(new Item("testId", "testName", "testDescription"));
         Item second = tracker.add(new Item("testId2", "testName2", "testDescription2"));
         Input input = new StubInput(new String[]{"2", "7"});
-        new StartUI (input, tracker).init();
+        new StartUI(input, tracker).init();
         assertThat(
             new String(this.out.toByteArray()),
                 is(new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
@@ -46,7 +46,7 @@ public class StartUITest {
                         .add("Наименование заявки: testName")
                         .add("Описание заявки: testDescription")
                         .add("ID заявки: " + tracker.getAll()[1].getId())
-                        .add("Наименование заявки: testName")
+                        .add("Наименование заявки: testName2")
                         .add("Описание заявки: testDescription2")
                         .add(" ")
                         .add("Меню.")
