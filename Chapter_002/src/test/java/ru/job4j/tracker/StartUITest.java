@@ -45,11 +45,10 @@ public class StartUITest {
                                 .append(menu)
                                 .append("------------ Добавление новой заявки --------------" + System.lineSeparator())
                                 .append("ID новой заявки: " + tracker.getAll()[0].getId())
-                                .append(""+ System.lineSeparator())
+                                .append("" + System.lineSeparator())
                                 .append(menu)
                                 .toString()
                 )
-
         );
     }
 
@@ -68,14 +67,13 @@ public class StartUITest {
                         .append("ID заявки: " + tracker.getAll()[0].getId() + System.lineSeparator())
                         .append("Наименование заявки: testName" + System.lineSeparator())
                         .append("Описание заявки: testDescription" + System.lineSeparator())
-                        .append("ID заявки: " + tracker.getAll()[1].getId()+ System.lineSeparator())
+                        .append("ID заявки: " + tracker.getAll()[1].getId() + System.lineSeparator())
                         .append("Наименование заявки: testName2" + System.lineSeparator())
                         .append("Описание заявки: testDescription2" + System.lineSeparator())
-                        .append(" "+ System.lineSeparator())
+                        .append(" " + System.lineSeparator())
                         .append(menu)
                         .toString()
                 )
-
         );
     }
 
@@ -87,18 +85,15 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(
                 new String(this.out.toByteArray()),
-                is(
+                    is(
                         new StringBuilder()
                                 .append(menu)
                                 .append("--------------- Редактирование заявки --------------" + System.lineSeparator())
                                 .append("Заявка " + first.getId() + " отредактирована." + System.lineSeparator())
-                                .append(" "+ System.lineSeparator())
+                                .append(" " + System.lineSeparator())
                                 .append(menu)
                                 .toString()
-                )
-
+                    )
         );
     }
-
-
 }
