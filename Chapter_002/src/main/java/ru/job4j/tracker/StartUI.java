@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     private static final String ADD = "1";
     private static final String GETALL = "2";
@@ -17,26 +20,16 @@ public class StartUI {
     }
 
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню:");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (GETALL.equals(answer)) {
-                this.allItems();
-            } else if (UPDATE.equals(answer)) {
-                this.updateItem();
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else if (FINDBYID.equals(answer)) {
-                this.findId();
-            } else if (FINDBYNAME.equals(answer)) {
-                this.findName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
+        menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
         }
+        do {
+            menu.show();
+            menu.select(this.input.ask("Выберите пунк меню: ", range));
+        } while (!"y".equals(this.input.ask("Выход?(y): ")));
     }
 
     private void createItem() {
