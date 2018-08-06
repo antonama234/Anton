@@ -6,6 +6,7 @@ import java.util.List;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
+
     private List<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
@@ -18,18 +19,26 @@ public class MenuTracker {
     }
 
     public class AddItem implements UserAction {
+        private int key;
+        private String menuName;
+
+        public AddItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 1;
+            return key;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Добавление новой заявки --------------");
             String name = input.ask("Введите имя заявки: ");
-            String desc = input.ask("Введите описание заявки: ");
+            String descriptoin = input.ask("Введите описание заявки: ");
             String id = new String();
-            Item item = new Item(id, name, desc);
+            Item item = new Item(id, name, descriptoin);
             tracker.add(item);
             System.out.println("------------ ID новой заявки : " + item.getId());
             System.out.println("------------ Имя новой заявки : " + item.getName());
@@ -43,9 +52,17 @@ public class MenuTracker {
     }
 
     public class ShowItems implements UserAction {
+        private int key;
+        private String menuName;
+
+        public ShowItems(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 2;
+            return key;
         }
 
         @Override
@@ -67,9 +84,17 @@ public class MenuTracker {
 }
 
     public class EditItem implements UserAction {
+        private int key;
+        private String menuName;
+
+        public EditItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 3;
+            return key;
         }
 
         @Override
@@ -90,9 +115,17 @@ public class MenuTracker {
     }
 
     public class DeleteItem implements UserAction {
+        private int key;
+        private String menuName;
+
+        public DeleteItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 4;
+            return key;
         }
 
         @Override
@@ -114,9 +147,17 @@ public class MenuTracker {
     }
 
     public class FindItemById implements UserAction {
+        private int key;
+        private String menuName;
+
+        public FindItemById(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 5;
+            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
@@ -135,9 +176,17 @@ public class MenuTracker {
     }
 
     public class FindItemsByName implements UserAction {
+        private int key;
+        private String menuName;
+
+        public FindItemsByName(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 6;
+            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
@@ -155,9 +204,17 @@ public class MenuTracker {
     }
 
     public class ExitProgram implements UserAction {
+        private int key;
+        private String menuName;
+
+        public ExitProgram(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
         @Override
         public int key() {
-            return 7;
+            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
