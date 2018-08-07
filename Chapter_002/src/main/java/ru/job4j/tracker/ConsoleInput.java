@@ -14,6 +14,13 @@ public class ConsoleInput implements Input {
     @Override
     public int ask(String question, List<Integer> range) {
         int res = Integer.valueOf(this.ask(question));
-        return res;
+        boolean exist = false;
+        for (int value : range) {
+            if (value == res) {
+                exist = true;
+                break;
+            }
+        }
+        return exist ? res : -1;
     }
 }

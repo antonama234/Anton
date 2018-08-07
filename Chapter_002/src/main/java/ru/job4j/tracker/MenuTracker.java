@@ -18,6 +18,14 @@ public class MenuTracker {
         return this.actions.size();
     }
 
+    public int[] keys() {
+        int[] k = new int[getActionsLentgh()];
+        for (int i = 0; i < getActionsLentgh(); i++) {
+            k[i] = actions.get(i).key();
+        }
+        return k;
+    }
+
     public class AddItem implements UserAction {
         private int key;
         private String menuName;
@@ -207,10 +215,12 @@ public class MenuTracker {
     public class ExitProgram implements UserAction {
         private int key;
         private String menuName;
+        private final StartUI ui;
 
-        public ExitProgram(int key, String menuName) {
+        public ExitProgram(int key, String menuName, StartUI ui) {
             this.key = key;
             this.menuName = menuName;
+            this.ui = ui;
         }
 
         @Override
@@ -219,7 +229,7 @@ public class MenuTracker {
         }
 
         public void execute(Input input, Tracker tracker) {
-            input.ask("Выход?(y): ");
+            this.ui.stop();
         }
 
         @Override
@@ -228,14 +238,14 @@ public class MenuTracker {
         }
     }
 
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(1, "Создание новой заявки."));
         this.actions.add(new ShowItems(2, "Отобразить все заявки."));
         this.actions.add(new MenuTracker.EditItem(3, "Отредактировать заявку."));
         this.actions.add(new MenuTracker.DeleteItem(4, "Удалить заявку."));
         this.actions.add(new FindItemById(5, "Найти заявку по ID"));
         this.actions.add(new FindItemsByName(6, "Найти заявку по имени."));
-        this.actions.add(new ExitProgram(7, "Выход из приложения."));
+        this.actions.add(new ExitProgram(7, "Выход из приложения.", ui));
     }
 
     public void select(int key) {

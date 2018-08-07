@@ -13,6 +13,7 @@ public class StartUI {
     private static final String EXIT = "7";
     private final Input input;
     private final Tracker tracker;
+    private boolean working = true;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -22,15 +23,17 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
-        menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            range.add(i);
-        }
+        menu.fillActions(this);
+        menu.keys();
         do {
             menu.show();
             menu.select(this.input.ask("Выберите пунк меню: ", range));
-        } while (!"y".equals(this.input.ask("Выход?(y): ")));
+        } while (this.working);
     }
+
+        public void stop() {
+            this.working = false;
+        }
 
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
