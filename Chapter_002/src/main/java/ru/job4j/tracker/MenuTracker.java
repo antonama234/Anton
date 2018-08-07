@@ -47,15 +47,47 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Новая заявка добавлена.";
+            return "1. Создать новую заявку.";
         }
     }
+
 
     public class ShowItems implements UserAction {
         private int key;
         private String menuName;
 
         public ShowItems(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("---------------------- Заявки ----------------------");
+            for (Item items : tracker.getAll()) {
+                System.out.println("ID заявки: " + items.getId());
+                System.out.println("Наименование заявки: " + items.getName());
+                System.out.println("Описание заявки: " + items.getDescription());
+            }
+            System.out.println(" ");
+        }
+
+        @Override
+        public String info() {
+            return "2. Показать все заявки.";
+        }
+    }
+
+    public class EditItem implements UserAction {
+        private int key;
+        private String menuName;
+
+        public EditItem(int key, String menuName) {
             this.key = key;
             this.menuName = menuName;
         }
@@ -79,38 +111,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Заявка отредактирована.";
-        }
-}
-
-    public class EditItem implements UserAction {
-        private int key;
-        private String menuName;
-
-        public EditItem(int key, String menuName) {
-            this.key = key;
-            this.menuName = menuName;
-        }
-
-        @Override
-        public int key() {
-            return key;
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("---------------------- Заявки ----------------------");
-            for (Item items : tracker.getAll()) {
-                System.out.println("ID заявки: " + items.getId());
-                System.out.println("Наименование заявки: " + items.getName());
-                System.out.println("Описание заявки: " + items.getDescription());
-            }
-            System.out.println(" ");
-        }
-
-        @Override
-        public String info() {
-            return "Заявки: ";
+            return "3. Редактирование заявки.";
         }
     }
 
@@ -142,7 +143,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Заявка удалена.";
+            return "4. Удаление заявки.";
         }
     }
 
@@ -171,7 +172,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Найдена заявка: ";
+            return "5. Поиск заявки по ID.";
         }
     }
 
@@ -199,7 +200,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Найдены заявки: ";
+            return "6. Поиск заявки по имени.";
         }
     }
 
@@ -223,7 +224,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Выход";
+            return "7. Выход";
         }
     }
 
