@@ -14,10 +14,6 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
-    public int getActionsLentgh() {
-        return this.actions.size();
-    }
-
     public List<Integer> keys() {
         List<Integer> keys = new ArrayList<>();
         for (UserAction action : actions) {
@@ -55,7 +51,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "1. Создать новую заявку.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -87,7 +83,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "2. Показать все заявки.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -119,7 +115,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "3. Редактирование заявки.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -151,7 +147,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "4. Удаление заявки.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -180,7 +176,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "5. Поиск заявки по ID.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -206,9 +202,10 @@ public class MenuTracker {
             System.out.println(" ");
         }
 
+
         @Override
         public String info() {
-            return "6. Поиск заявки по имени.";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
@@ -234,26 +231,26 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "7. Выход";
+            return String.format("%d. %s",key, menuName);
         }
     }
 
     public void fillActions(StartUI ui) {
-        this.actions.add(new AddItem(0, "Создание новой заявки."));
-        this.actions.add(new ShowItems(1, "Отобразить все заявки."));
-        this.actions.add(new MenuTracker.EditItem(2, "Отредактировать заявку."));
-        this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
-        this.actions.add(new FindItemById(4, "Найти заявку по ID"));
-        this.actions.add(new FindItemsByName(5, "Найти заявку по имени."));
-        this.actions.add(new ExitProgram(6, "Выход из приложения.", ui));
+        actions.add(new AddItem(0, "Создание новой заявки."));
+        actions.add(new ShowItems(1, "Отобразить все заявки."));
+        actions.add(new MenuTracker.EditItem(2, "Отредактировать заявку."));
+        actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
+        actions.add(new FindItemById(4, "Найти заявку по ID"));
+        actions.add(new FindItemsByName(5, "Найти заявку по имени."));
+        actions.add(new ExitProgram(6, "Выход из приложения.", ui));
     }
 
     public void select(int key) {
-        this.actions.get(key).execute(this.input, this.tracker);
+        actions.get(key).execute(input, tracker);
     }
 
     public void show() {
-        for (UserAction action : this.actions) {
+        for (UserAction action : actions) {
             if (action != null) {
                 System.out.println(action.info());
             }
