@@ -22,9 +22,8 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
         menu.fillActions(this);
-        menu.keys();
+        List<Integer> range = menu.keys();
         do {
             menu.show();
             menu.select(this.input.ask("Выберите пунк меню: ", range));

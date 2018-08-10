@@ -18,12 +18,12 @@ public class MenuTracker {
         return this.actions.size();
     }
 
-    public int[] keys() {
-        int[] k = new int[getActionsLentgh()];
-        for (int i = 0; i < getActionsLentgh(); i++) {
-            k[i] = actions.get(i).key();
+    public List<Integer> keys() {
+        List<Integer> keys = new ArrayList<>();
+        for (UserAction action : actions) {
+            keys.add(action.key());
         }
-        return k;
+        return keys;
     }
 
     public class AddItem implements UserAction {
@@ -239,13 +239,13 @@ public class MenuTracker {
     }
 
     public void fillActions(StartUI ui) {
-        this.actions.add(new AddItem(1, "Создание новой заявки."));
-        this.actions.add(new ShowItems(2, "Отобразить все заявки."));
-        this.actions.add(new MenuTracker.EditItem(3, "Отредактировать заявку."));
-        this.actions.add(new MenuTracker.DeleteItem(4, "Удалить заявку."));
-        this.actions.add(new FindItemById(5, "Найти заявку по ID"));
-        this.actions.add(new FindItemsByName(6, "Найти заявку по имени."));
-        this.actions.add(new ExitProgram(7, "Выход из приложения.", ui));
+        this.actions.add(new AddItem(0, "Создание новой заявки."));
+        this.actions.add(new ShowItems(1, "Отобразить все заявки."));
+        this.actions.add(new MenuTracker.EditItem(2, "Отредактировать заявку."));
+        this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
+        this.actions.add(new FindItemById(4, "Найти заявку по ID"));
+        this.actions.add(new FindItemsByName(5, "Найти заявку по имени."));
+        this.actions.add(new ExitProgram(6, "Выход из приложения.", ui));
     }
 
     public void select(int key) {
