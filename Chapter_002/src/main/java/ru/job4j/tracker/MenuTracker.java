@@ -8,6 +8,7 @@ public class MenuTracker {
     private Tracker tracker;
 
     private List<UserAction> actions = new ArrayList<>();
+    List<Integer> keys = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -15,7 +16,6 @@ public class MenuTracker {
     }
 
     public List<Integer> keys() {
-        List<Integer> keys = new ArrayList<>();
         for (UserAction action : actions) {
             keys.add(action.key());
         }
@@ -236,17 +236,21 @@ public class MenuTracker {
     }
 
     public void fillActions(StartUI ui) {
-        actions.add(new AddItem(0, "Создание новой заявки."));
-        actions.add(new ShowItems(1, "Отобразить все заявки."));
-        actions.add(new MenuTracker.EditItem(2, "Отредактировать заявку."));
-        actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
-        actions.add(new FindItemById(4, "Найти заявку по ID"));
-        actions.add(new FindItemsByName(5, "Найти заявку по имени."));
-        actions.add(new ExitProgram(6, "Выход из приложения.", ui));
+        actions.add(new AddItem(1, "Создание новой заявки."));
+        actions.add(new ShowItems(2, "Отобразить все заявки."));
+        actions.add(new MenuTracker.EditItem(3, "Отредактировать заявку."));
+        actions.add(new MenuTracker.DeleteItem(4, "Удалить заявку."));
+        actions.add(new FindItemById(5, "Найти заявку по ID"));
+        actions.add(new FindItemsByName(6, "Найти заявку по имени."));
+        actions.add(new ExitProgram(7, "Выход из приложения.", ui));
     }
 
     public void select(int key) {
-        actions.get(key).execute(input, tracker);
+        for (UserAction action : actions) {
+            if (action.key() == key) {
+                action.execute(input, tracker);
+            }
+        }
     }
 
     public void show() {
