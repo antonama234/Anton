@@ -51,7 +51,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -83,7 +83,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -115,7 +115,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -147,7 +147,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -176,7 +176,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -205,7 +205,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
@@ -231,7 +231,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%d. %s",key, menuName);
+            return String.format("%d. %s", key, menuName);
         }
     }
 
