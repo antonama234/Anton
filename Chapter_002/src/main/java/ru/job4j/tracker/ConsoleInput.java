@@ -21,6 +21,11 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        return exist ? res : -1;
+
+        if (exist) {
+            return res;
+        } else {
+            throw new MenuOutException("Введите верный пунк меню.");
+        }
     }
 }
