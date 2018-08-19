@@ -22,10 +22,10 @@ public class ConsoleInput implements Input {
             }
         }
 
-        if (exist) {
-            return res;
-        } else {
+        if (!exist) {
             throw new MenuOutException("Введите верный пунк меню.");
         }
+        return res;
     }
+
 }
