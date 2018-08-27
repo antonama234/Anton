@@ -22,10 +22,18 @@ public class MenuTracker {
         return keys;
     }
 
-    public class AddItem extends BaseAction {
+    public class AddItem implements UserAction {
+        private int key;
+        private String menuName;
 
-        public AddItem(int key, String name) {
-            super(key, name);
+        public AddItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         @Override
@@ -36,16 +44,30 @@ public class MenuTracker {
             String id = new String();
             Item item = new Item(id, name, descriptoin);
             tracker.add(item);
-            System.out.println("ID новой заявки : " + item.getId());
-            System.out.println("Имя новой заявки : " + item.getName());
-            System.out.println("Описание новой заявки : " + item.getDescription());
+            System.out.println("------------ ID новой заявки : " + item.getId());
+            System.out.println("------------ Имя новой заявки : " + item.getName());
+            System.out.println("------------ Описание новой заявки : " + item.getDescription());
+        }
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
         }
     }
 
-    public class ShowItems extends BaseAction {
 
-        public ShowItems(int key, String name) {
-            super(key, name);
+    public class ShowItems implements UserAction {
+        private int key;
+        private String menuName;
+
+        public ShowItems(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         @Override
@@ -58,12 +80,25 @@ public class MenuTracker {
             }
             System.out.println(" ");
         }
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
+        }
     }
 
-    public class EditItem extends BaseAction {
+    public class EditItem implements UserAction {
+        private int key;
+        private String menuName;
 
-        public EditItem(int key, String name) {
-            super(key, name);
+        public EditItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         @Override
@@ -77,12 +112,25 @@ public class MenuTracker {
             System.out.println("Заявка " + item.getId() + " отредактирована.");
             System.out.println(" ");
         }
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
+        }
     }
 
-    public class DeleteItem extends BaseAction{
+    public class DeleteItem implements UserAction {
+        private int key;
+        private String menuName;
 
-        public DeleteItem(int key, String name) {
-            super(key, name);
+        public DeleteItem(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         @Override
@@ -96,12 +144,25 @@ public class MenuTracker {
             }
             System.out.println(" ");
         }
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
+        }
     }
 
-    public class FindItemById extends BaseAction {
+    public class FindItemById implements UserAction {
+        private int key;
+        private String menuName;
 
-        public FindItemById(int key, String name) {
-            super(key, name);
+        public FindItemById(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
@@ -112,12 +173,25 @@ public class MenuTracker {
             System.out.println("Описание заявки: " + item.getDescription());
             System.out.println(" ");
         }
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
+        }
     }
 
-    public class FindItemsByName extends BaseAction {
+    public class FindItemsByName implements UserAction {
+        private int key;
+        private String menuName;
 
-        public FindItemsByName(int key, String name) {
-            super(key, name);
+        public FindItemsByName(int key, String menuName) {
+            this.key = key;
+            this.menuName = menuName;
+        }
+
+        @Override
+        public int key() {
+            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
@@ -126,6 +200,12 @@ public class MenuTracker {
             Item[] item = tracker.findByName(key);
             System.out.println("Найдена(ы) заявка(и) с ID: " + item.length);
             System.out.println(" ");
+        }
+
+
+        @Override
+        public String info() {
+            return String.format("%d. %s", key, menuName);
         }
     }
 
