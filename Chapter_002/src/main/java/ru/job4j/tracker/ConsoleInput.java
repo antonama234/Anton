@@ -27,5 +27,4 @@ public class ConsoleInput implements Input {
         }
         return res;
     }
-
 }
