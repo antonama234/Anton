@@ -1,14 +1,9 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
-/**
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
- */
 public class BishopBlack implements Figure {
     private final Cell position;
 
@@ -22,23 +17,16 @@ public class BishopBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
-        if (source.y == dest.y + 1 && source.x == dest.x + 1 || source.y == dest.y + 2 && source.x == dest.x + 2 ||
-            source.y == dest.y + 3 && source.x == dest.x + 3 || source.y == dest.y + 4 && source.x == dest.x + 4 ||
-            source.y == dest.y + 5 && source.x == dest.x + 5 || source.y == dest.y + 6 && source.x == dest.x + 6 ||
-            source.y == dest.y + 7 && source.x == dest.x + 7 || source.y == dest.y - 1 && source.x == dest.x - 1 ||
-            source.y == dest.y - 2 && source.x == dest.x - 2 || source.y == dest.y - 3 && source.x == dest.x - 3 ||
-            source.y == dest.y - 4 && source.x == dest.x - 4 || source.y == dest.y - 5 && source.x == dest.x - 5 ||
-            source.y == dest.y - 6 && source.x == dest.x - 6 || source.y == dest.y - 7 && source.x == dest.x - 7 ||
-            source.y == dest.y + 1 && source.x == dest.x - 1 || source.y == dest.y + 2 && source.x == dest.x - 2 ||
-            source.y == dest.y + 3 && source.x == dest.x - 3 || source.y == dest.y + 4 && source.x == dest.x - 4 ||
-            source.y == dest.y + 5 && source.x == dest.x - 5 || source.y == dest.y + 6 && source.x == dest.x - 6 ||
-            source.y == dest.y + 7 && source.x == dest.x - 7 || source.y == dest.y - 1 && source.x == dest.x + 1 ||
-            source.y == dest.y - 2 && source.x == dest.x + 2 || source.y == dest.y - 3 && source.x == dest.x + 3 ||
-            source.y == dest.y - 4 && source.x == dest.x + 4 || source.y == dest.y - 5 && source.x == dest.x + 5 ||
-            source.y == dest.y - 6 && source.x == dest.x + 6 || source.y == dest.y - 7 && source.x == dest.x + 7) {
-            steps = new Cell[] { dest };
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+        Cell[] steps = new Cell[Math.abs(source.x - dest.x)];
+        int deltaX = Integer.compare(source.x, dest.x);
+        int deltaY = Integer.compare(source.y, dest.y);
+        for (int index = 0; index < Cell.values().length; index++) {
+            if (deltaX == deltaY || deltaX == -deltaY || -deltaX == deltaY || -deltaX == -deltaY) {
+                steps = new Cell[] {dest};
+            } else {
+                throw new ImpossibleMoveException("Слон так не ходит.");
+            }
         }
        return steps;
     }
