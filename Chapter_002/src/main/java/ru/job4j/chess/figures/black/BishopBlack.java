@@ -19,16 +19,16 @@ public class BishopBlack implements Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         Cell[] steps = new Cell[Math.abs(source.x - dest.x)];
-        int deltaX = Integer.compare(source.x, dest.x);
-        int deltaY = Integer.compare(source.y, dest.y);
-        int nextStepX = source.x + deltaX;
-        int nextStepY = source.y + deltaY;
-        if () {
-            throw new ImpossibleMoveException("Слон так не ходит.");
-        }
+        int deltaX = Integer.compare(dest.x, source.x);
+        int deltaY = Integer.compare(dest.y, source.y);
+        int stepX = source.x;
+        int stepY = source.y;
+
         for (int index = 0; index < Cell.values().length; index++) {
-            if (deltaX == deltaY || deltaX == -deltaY || -deltaX == deltaY || -deltaX == -deltaY) {
-                steps[index] = new Cell[] {dest};
+            stepX += deltaX * steps.length;
+            stepY += deltaY * steps.length;
+            if (stepX == dest.x && stepY == dest.y) {
+                steps = new Cell[] {dest};
             }
         }
        return steps;
