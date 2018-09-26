@@ -1,4 +1,4 @@
-package ru.job4j.chess.figures;
+package ru.job4j.chess.firuges;
 
 public enum Cell {
     A1(0, 0), A2(0, 1), A3(0, 2), A4(0, 3), A5(0, 4), A6(0, 5), A7(0, 6), A8(0, 7),
@@ -16,15 +16,5 @@ public enum Cell {
     Cell(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public static Cell find(int x, int y) {
-        Cell found = null;
-        for (int index = 0; index < Cell.values().length; index++) {
-            if (Cell.values()[index].x == x && Cell.values()[index].y == y) {
-                found = Cell.values()[index];
-            }
-        }
-        return found;
     }
 }
