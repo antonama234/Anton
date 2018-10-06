@@ -14,16 +14,18 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            for (int cellIndex = 0; cellIndex < figures.length; cellIndex++) {
-                if (steps[cellIndex] == this.figures[this.index].position()) {
-                    throw new OccupiedWayException("Клетка занята!");
-                } else if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
-                }
+        if (index == -1) {
+            throw new FigureNotFoundException("Фигура не найдена!");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        for (Cell step : steps) {
+            if (this.findBy(step) != -1) {
+                throw new OccupiedWayException("Клетка занята!");
             }
+        }
+        if (steps.length > 0) {
+            this.figures[index] = this.figures[index].copy(dest);
+            rst = true;
         }
         return rst;
     }
