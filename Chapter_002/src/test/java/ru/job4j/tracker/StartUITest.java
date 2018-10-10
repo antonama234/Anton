@@ -15,13 +15,13 @@ public class StartUITest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     StringJoiner menu = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
             .add("Меню.")
-            .add("1. Создание новой заявки.")
-            .add("2. Отобразить все заявки.")
-            .add("3. Отредактировать заявку.")
-            .add("4. Удалить заявку.")
-            .add("5. Найти заявку по ID")
-            .add("6. Найти заявку по имени.")
-            .add("7. Выход из приложения.");
+            .add("1 : Создание новой заявки.")
+            .add("2 : Отобразить все заявки.")
+            .add("3 : Отредактировать заявку.")
+            .add("4 : Удалить заявку.")
+            .add("5 : Найти заявку по ID")
+            .add("6 : Найти заявку по имени.")
+            .add("7 : Выход из приложения.");
 
     @Before
     public void loadOutput() {
@@ -45,6 +45,8 @@ public class StartUITest {
                                 .append(menu)
                                 .append("------------ Добавление новой заявки --------------" + System.lineSeparator())
                                 .append("ID новой заявки: " + tracker.getAll()[0].getId())
+                                .append("Имя новой заявки: " + tracker.getAll()[0].getName())
+                                .append("Описание новой заявки: " + tracker.getAll()[0].getDescription())
                                 .append("" + System.lineSeparator())
                                 .append(menu)
                                 .toString()

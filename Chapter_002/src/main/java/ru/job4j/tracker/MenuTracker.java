@@ -129,29 +129,16 @@ public class MenuTracker {
         }
     }
 
-    public class ExitProgram implements UserAction {
-        private int key;
-        private String menuName;
+    public class ExitProgram extends BaseAction {
         private final StartUI ui;
 
-        public ExitProgram(int key, String menuName, StartUI ui) {
-            this.key = key;
-            this.menuName = menuName;
+        public ExitProgram(int key, String name, StartUI ui) {
+            super(key, name);
             this.ui = ui;
-        }
-
-        @Override
-        public int key() {
-            return key;
         }
 
         public void execute(Input input, Tracker tracker) {
             this.ui.stop();
-        }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", key, menuName);
         }
     }
 
