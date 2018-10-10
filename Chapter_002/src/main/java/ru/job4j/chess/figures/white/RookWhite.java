@@ -23,25 +23,9 @@ public class RookWhite implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
-        if (source.y == dest.y + 1 && source.x == dest.x || source.y == dest.y + 2 && source.x == dest.x ||
-            source.y == dest.y + 3 && source.x == dest.x || source.y == dest.y + 4 && source.x == dest.x ||
-            source.y == dest.y + 5 && source.x == dest.x || source.y == dest.y + 6 && source.x == dest.x ||
-            source.y == dest.y + 7 && source.x == dest.x || source.y == dest.y - 1 && source.x == dest.x ||
-            source.y == dest.y - 2 && source.x == dest.x || source.y == dest.y - 3 && source.x == dest.x ||
-            source.y == dest.y - 4 && source.x == dest.x || source.y == dest.y - 5 && source.x == dest.x ||
-            source.y == dest.y - 6 && source.x == dest.x || source.y == dest.y - 7 && source.x == dest.x ||
-            source.y == dest.y && source.x == dest.x - 1 || source.y == dest.y && source.x == dest.x - 2 ||
-            source.y == dest.y && source.x == dest.x - 3 || source.y == dest.y && source.x == dest.x - 4 ||
-            source.y == dest.y && source.x == dest.x - 5 || source.y == dest.y && source.x == dest.x - 6 ||
-            source.y == dest.y && source.x == dest.x - 7 || source.y == dest.y && source.x == dest.x + 1 ||
-            source.y == dest.y && source.x == dest.x + 2 || source.y == dest.y && source.x == dest.x + 3 ||
-            source.y == dest.y && source.x == dest.x + 4 || source.y == dest.y && source.x == dest.x + 5 ||
-            source.y == dest.y && source.x == dest.x + 6 || source.y == dest.y && source.x == dest.x + 7) {
-            steps = new Cell[] { dest };
-        }
-        return steps;
+        return new Cell[] {dest};
     }
+
 
     @Override
     public Figure copy(Cell dest) {
