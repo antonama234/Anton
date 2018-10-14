@@ -6,14 +6,16 @@ public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<Task>();
 
     public void put(Task task) {
-        for (Task index : tasks) {
-            if (tasks.isEmpty()) {
-                this.tasks.add(task);
-            } else if (task.getPriority() > index.getPriority()) {
-                this.tasks.add(index.getPriority(), task);
+        int index = tasks.size();
+        for (int i = 0; i < tasks.size(); i++)  {
+                if (tasks.isEmpty()) {
+                    this.tasks.add(task);
+                } else if (tasks.get(i).getPriority() > task.getPriority()) {
+                index = i;
                 break;
             }
         }
+        tasks.add(index, task);
     }
 
     public Task take() {
