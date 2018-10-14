@@ -36,9 +36,9 @@ public class MenuTracker {
             String id = new String();
             Item item = new Item(id, name, descriptoin);
             tracker.add(item);
-            System.out.println("ID новой заявки : " + item.getId());
-            System.out.println("Имя новой заявки : " + item.getName());
-            System.out.println("Описание новой заявки : " + item.getDescription());
+            System.out.println("ID новой заявки: " + item.getId());
+            System.out.println("Имя новой заявки: " + item.getName());
+            System.out.println("Описание новой заявки: " + item.getDescription());
         }
     }
 
