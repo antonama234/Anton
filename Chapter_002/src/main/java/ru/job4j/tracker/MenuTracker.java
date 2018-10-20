@@ -123,8 +123,8 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по наименованию ------------");
             String key = input.ask("Введите наименование заявки: ");
-            Item[] item = tracker.findByName(key);
-            System.out.println("Найдена(ы) заявка(и) с ID: " + item.length);
+            List<Item> item = tracker.findByName(key);
+            System.out.println("Найдена(ы) заявка(и) с ID: " + item.size());
             System.out.println(" ");
         }
     }
