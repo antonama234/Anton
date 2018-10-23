@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Tracker {
-    List<Item> items = new ArrayList<>(100);
+    private List<Item> items = new ArrayList<>(100);
     private int position = 0;
     private static final Random RN = new Random();
 
@@ -21,7 +21,7 @@ public class Tracker {
 
     public boolean update(String id, Item item) {
         boolean temp = false;
-        for (int index = 0; index != this.position; index++) {
+        for (int index = 0; index < items.size(); index++) {
             if (this.items.get(index).getId().equals(id)) {
                 this.items.set(index, item);
                 temp = true;
@@ -33,7 +33,7 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean temp = false;
-        for (int index = 0; index != this.position; index++) {
+        for (int index = 0; index < items.size(); index++) {
             if (this.items.get(index).getId().equals(id)) {
                 this.items.remove(index);
                 temp = true;
