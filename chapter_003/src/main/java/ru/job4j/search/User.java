@@ -1,10 +1,12 @@
 package ru.job4j.search;
 
+import java.util.Comparator;
+
 public class User implements Comparable<User> {
     private int id;
     private String name;
     private String city;
-    private Integer age;
+    private int age;
 
     public User(int id, String name, String city, int age) {
         this.id = id;
@@ -31,6 +33,6 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User o) {
-        return this.age.compareTo(o.age);
+        return Integer.compare(this.age, o.getAge());
     }
 }
