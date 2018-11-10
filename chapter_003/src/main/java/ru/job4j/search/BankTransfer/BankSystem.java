@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BankSystem {
-    private Map<User, List<Account>> users = new HashMap<>();
+    public Map<User, List<Account>> users = new HashMap<>();
 
     public User findByPass(String passport) {
         User rst = null;
@@ -54,16 +54,15 @@ public class BankSystem {
 
     public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean rst = false;
-        User fromUser = this.findByPass(srcPassport);
+        User fromUser = this.findByPass(srcPassport); // нужно ли это?
         Account fromAcc = this.findByRequisites(srcRequisite, srcPassport);
-        User toUser = this.findByPass(destPassport);
+        User toUser = this.findByPass(destPassport); // нужно ли это?
         Account toAcc = this.findByRequisites(dstRequisite, destPassport);
         if (fromAcc.getValue() > amount && users.get(findByPass(srcPassport)) != null) {
-            toAcc.getValue() += amount;
+            fromAcc.setValue(toAcc.getValue() - amount);
+            toAcc.setValue(toAcc.getValue() + amount);
             rst = true;
         }
         return rst;
     }
-    // метод для перечисления денег с одного счёта на другой счёт:
-    //если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят) должен вернуть false.
 }
