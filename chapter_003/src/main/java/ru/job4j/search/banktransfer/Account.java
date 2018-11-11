@@ -1,10 +1,10 @@
-package ru.job4j.search.BankTransfer;
+package ru.job4j.search.banktransfer;
 
 public class Account {
     private double value;
     private String requisites;
 
-    public Account(double   value, String requisites) {
+    public Account(double value, String requisites) {
         this.value = value;
         this.requisites = requisites;
     }

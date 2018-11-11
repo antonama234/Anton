@@ -1,6 +1,5 @@
-package ru.job4j.search.BankTransfer;
+package ru.job4j.search.banktransfer;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +18,9 @@ public class BankSystem {
         return rst;
     }
 
-    public Account findByRequisites(String requisites, String passport){
+    public Account findByRequisites(String requisites, String passport) {
         Account rst = null;
-        List<Account> accounts  = users.get(getUserAccounts(passport));
+        List<Account> accounts  = getUserAccounts(passport);
         for (Account account : accounts) {
             if (account.getRequisites().equals(requisites)) {
                 rst = account;
@@ -39,20 +38,26 @@ public class BankSystem {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        this.users.get(getUserAccounts(passport)).add(account);
+        User user = findByPass(passport);
+        users.get(user).add(account);
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        this.users.get(getUserAccounts(passport)).remove(account);
+        User user = findByPass(passport);
+        users.get(user).remove(account);
     }
 
-    public List<Account> getUserAccounts (String passport) {
-        User user = this.findByPass(passport);
-        List<Account> rst = users.get(user);
+    public List<Account> getUserAccounts(String passport) {
+        List<Account> rst = new ArrayList<>();
+        for (User user : users.keySet()) {
+            if (user.getPassport().equals(passport)) {
+                rst = users.get(user);
+            }
+        }
         return rst;
     }
 
-    public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean rst = false;
         User fromUser = this.findByPass(srcPassport); // нужно ли это?
         Account fromAcc = this.findByRequisites(srcRequisite, srcPassport);
