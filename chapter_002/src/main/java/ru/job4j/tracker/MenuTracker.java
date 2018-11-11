@@ -6,9 +6,8 @@ import java.util.List;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-
     private List<UserAction> actions = new ArrayList<>();
-    List<Integer> keys = new ArrayList<>();
+    private List<Integer> keys = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
