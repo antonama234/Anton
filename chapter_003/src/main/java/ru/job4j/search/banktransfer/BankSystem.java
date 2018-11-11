@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BankSystem {
-    public Map<User, List<Account>> users = new HashMap<>();
+    private Map<User, List<Account>> users = new HashMap<>();
 
     public User findByPass(String passport) {
         User rst = null;
@@ -59,9 +59,7 @@ public class BankSystem {
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean rst = false;
-        User fromUser = this.findByPass(srcPassport); // нужно ли это?
         Account fromAcc = this.findByRequisites(srcRequisite, srcPassport);
-        User toUser = this.findByPass(destPassport); // нужно ли это?
         Account toAcc = this.findByRequisites(dstRequisite, destPassport);
         if (fromAcc.getValue() > amount && users.get(findByPass(srcPassport)) != null) {
             fromAcc.setValue(toAcc.getValue() - amount);

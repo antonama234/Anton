@@ -4,10 +4,8 @@ import org.junit.Test;
 import ru.job4j.search.banktransfer.Account;
 import ru.job4j.search.banktransfer.BankSystem;
 import ru.job4j.search.banktransfer.User;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -30,19 +28,22 @@ public class BankSystemTest {
         bankSystem.addUser(second);
         bankSystem.addUser(third);
         bankSystem.deleteUser(second);
-        assertThat(bankSystem.users.size(), is(2));
+        assertThat(bankSystem.findByPass("963325").getName(), is("Kate"));
     }
 
     @Test
     public void whenAddAccountToUser() {
         BankSystem bankSystem = new BankSystem();
         User first = new User("Anton", "234567");
-        Account firstAccount = new Account(500, "40817810100");
-        Account secondAccount = new Account(1000, "40817810900");
+        Account firstAccount = new Account(500.0, "40817810100");
+        Account secondAccount = new Account(1000.0, "40817810900");
+        List<Account> expect = new ArrayList<>();
+        expect.add(firstAccount);
+        expect.add(secondAccount);
         bankSystem.addUser(first);
         bankSystem.addAccountToUser("234567", firstAccount);
         bankSystem.addAccountToUser("234567", secondAccount);
-        assertThat(bankSystem.users.get(first).get(0).getValue(), is(500.0));
+        assertThat(bankSystem.getUserAccounts("234567"), is(expect));
     }
 
     @Test
@@ -55,7 +56,7 @@ public class BankSystemTest {
         bankSystem.addAccountToUser("234567", firstAccount);
         bankSystem.addAccountToUser("234567", secondAccount);
         bankSystem.deleteAccountFromUser("234567", firstAccount);
-        assertThat(bankSystem.users.get(first).get(0).getValue(), is(1000.0));
+        assertThat(bankSystem.getUserAccounts("234567").get(0), is(secondAccount));
     }
 
     @Test
@@ -84,6 +85,6 @@ public class BankSystemTest {
         bankSystem.addAccountToUser("234567", new Account(500.0, "40817810100"));
         bankSystem.addAccountToUser("978534", new Account(1000.0, "40817810900"));
         bankSystem.transferMoney("978534", "40817810900", "234567", "40817810100", 300.0);
-        assertThat(bankSystem.users.get(first).get(0).getValue(), is(800.0));
+        assertThat(bankSystem.getUserAccounts("234567").get(0).getValue(), is(800.0));
     }
 }
