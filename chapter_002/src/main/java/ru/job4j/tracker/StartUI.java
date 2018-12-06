@@ -18,7 +18,7 @@ public class StartUI {
         List<Integer> range = menu.keys();
         do {
             System.out.println("Меню.");
-            menu.show();
+            menu.show(s -> System.out.println(s));
             menu.select(this.input.ask("Выберите пунк меню: ", range));
         } while (this.working);
     }
