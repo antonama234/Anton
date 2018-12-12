@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     private Input input;
@@ -159,10 +160,10 @@ public class MenuTracker {
         }
     }
 
-    public void show() {
+    public void show(Consumer<String> output) {
         for (UserAction action : actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }

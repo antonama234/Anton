@@ -37,7 +37,7 @@ public class StartUITest {
     public void whenAddItemThenHasNewItem() {
         Item item = new Item("testId", "testName", "testDescription");
         Input input = new StubInput(new String[]{"1", item.getName(), item.getDescription(), "7"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker).init(s -> System.out.println(s));
         assertThat(
                 new String(this.out.toByteArray()),
                 is(
@@ -59,7 +59,7 @@ public class StartUITest {
         Item first = tracker.add(new Item("testId", "testName", "testDescription"));
         Item second = tracker.add(new Item("testId2", "testName2", "testDescription2"));
         Input input = new StubInput(new String[]{"2", "7"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker).init(s -> System.out.println(s));
         assertThat(
             new String(this.out.toByteArray()),
                 is(
@@ -84,7 +84,7 @@ public class StartUITest {
         Item first = tracker.add(new Item("testId", "testName", "testDescription"));
         Item second = tracker.add(new Item("testId2", "testName2", "testDescription2"));
         Input input = new StubInput(new String[]{"3", first.getId(), second.getName(), second.getDescription(), "7"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker).init(s -> System.out.println(s));
         assertThat(
                 new String(this.out.toByteArray()),
                     is(
