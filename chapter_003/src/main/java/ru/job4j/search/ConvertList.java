@@ -1,17 +1,15 @@
 package ru.job4j.search;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConvertList {
-
     public List<Integer> convert(List<int[]> list) {
-        List<Integer> integers = new ArrayList<Integer>();
-        for (int[] i : list) {
-            for (int j : i) {
-                integers.add(j);
-            }
-        }
+        List<Integer> integers = list.stream()
+                .flatMapToInt(Arrays::stream)
+                .boxed()
+                .collect(Collectors.toList());
         return integers;
     }
 }

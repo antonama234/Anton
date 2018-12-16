@@ -1,21 +1,18 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
+import java.util.stream.IntStream;
 
 public class PriorityQueue {
-    private LinkedList<Task> tasks = new LinkedList<Task>();
+    private LinkedList<Task> tasks = new LinkedList<>();
 
     public void put(Task task) {
-        int index = tasks.size();
-        for (int i = 0; i < tasks.size(); i++)  {
-                if (tasks.isEmpty()) {
-                    this.tasks.add(task);
-                } else if (tasks.get(i).getPriority() > task.getPriority()) {
-                index = i;
-                break;
-            }
+        if (tasks.isEmpty()) {
+            this.tasks.add(task);
         }
-        tasks.add(index, task);
+        IntStream.range(0, tasks.size())
+                .filter(i -> tasks.get(i).getPriority() > task.getPriority())
+                .findFirst().ifPresent(i -> tasks.add(i, task));
     }
 
     public Task take() {
