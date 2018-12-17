@@ -12,7 +12,7 @@ public class SortUserTest {
     @Test
     public void whenFromListToMap() {
         SortUser sort = new SortUser();
-        List<User> input = new ArrayList<User>();
+        List<User> input = new ArrayList<>();
         input.add(new User(1, "Kate", "Moscow", 23));
         input.add(new User(2, "Anton", "Tula", 21));
         input.add(new User(3, "Lena", "Spb", 9));
@@ -23,7 +23,7 @@ public class SortUserTest {
     @Test
     public void whenSortByName() {
         SortUser sort = new SortUser();
-        List<User> input = new ArrayList<User>();
+        List<User> input = new ArrayList<>();
         input.add(new User(1, "Ekaterina", "Moscow", 23));
         input.add(new User(2, "Anton", "Tula", 21));
         input.add(new User(3, "Evgeniya", "Spb", 9));
@@ -36,7 +36,7 @@ public class SortUserTest {
     @Test
     public void whenSortByNameThenByAge() {
         SortUser sort = new SortUser();
-        List<User> input = new ArrayList<User>();
+        List<User> input = new ArrayList<>();
         input.add(new User(1, "Kate", "Moscow", 23));
         input.add(new User(2, "Anton", "Tula", 21));
         input.add(new User(5, "Roma", "Tver", 25));

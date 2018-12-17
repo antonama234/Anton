@@ -12,7 +12,7 @@ public class ConvertListTest {
     @Test
     public void listToInteger() {
         ConvertList list = new ConvertList();
-        List<int[]> input = new ArrayList<int[]>();
+        List<int[]> input = new ArrayList<>();
         input.add(new int[] {1, 2});
         input.add(new int[] {3, 4, 5, 6});
         List<Integer> result = list.convert(input);

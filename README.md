@@ -5,3 +5,4 @@ http://job4j.ru/
 [![Build Status](https://travis-ci.org/antonama234/Anton.svg?branch=master)](https://travis-ci.org/antonama234/Anton)
 
 [![codecov](https://codecov.io/gh/antonama234/Anton/branch/master/graph/badge.svg)](https://codecov.io/gh/antonama234/Anton)
+
