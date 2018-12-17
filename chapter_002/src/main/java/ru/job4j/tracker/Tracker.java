@@ -3,10 +3,11 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Tracker {
     private List<Item> items = new ArrayList<>(100);
-    private int position = 0;
     private static final Random RN = new Random();
 
     public Item add(Item item) {
@@ -48,24 +49,15 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-
-        List<Item> result = new ArrayList<>(items.size());
-        for (Item item : items) {
-            if (item != null && item.getName().equals(key)) {
-                result.add(item);
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(item -> item.getName().equals(key))
+                .collect(Collectors.toList());
     }
 
     public Item findById(String id) {
-        Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(item -> item.getId().contains(id))
+                .findFirst()
+                .orElse(null);
     }
 }
