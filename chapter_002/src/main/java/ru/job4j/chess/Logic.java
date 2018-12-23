@@ -2,6 +2,7 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import java.util.stream.IntStream;
 
 public class Logic {
     private final Figure[] figures = new Figure[32];
@@ -39,12 +40,6 @@ public class Logic {
 
     private int findBy(Cell cell) {
         int rst = -1;
-        for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
-                rst = index;
-                break;
-            }
-        }
-        return rst;
+        return IntStream.range(0, figures.length).filter(index -> figures[index].equals(cell)).findFirst().orElse(rst);
     }
 }
