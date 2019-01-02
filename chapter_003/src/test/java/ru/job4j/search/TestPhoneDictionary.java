@@ -12,7 +12,7 @@ public class TestPhoneDictionary {
         phones.add(
                 new Person("Anton", "Gorbachev", "1356599", "Tula")
         );
-        List<Person> persons = phones.find("Anton");
+        var persons = phones.find("Anton");
         assertThat(persons.iterator().next().getPhone(), is("1356599"));
     }
 }
