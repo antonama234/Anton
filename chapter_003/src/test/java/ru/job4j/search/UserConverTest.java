@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import org.junit.Test;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ public class UserConverTest {
     @Test
     public void whenFromListToMap() {
         UserConvert convert = new UserConvert();
-        List<User> input = Arrays.asList(
+        List<User> input = List.of(
                 new User(1, "Kate", "Moscow", 21),
                 new User(2, "Anton", "Tula", 5),
                 new User(3, "Lena", "Spb", 16));
@@ -23,7 +22,7 @@ public class UserConverTest {
     @Test
     public void whenFindByID() {
         UserConvert convert = new UserConvert();
-        List<User> input = Arrays.asList(
+        List<User> input = List.of(
                 new User(1, "Kate", "Moscow", 21),
                 new User(2, "Anton", "Tula", 5),
                 new User(3, "Lena", "Spb", 16));
