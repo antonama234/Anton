@@ -9,10 +9,15 @@ public class SortUser {
     }
 
     public List<User> sortNameLength(List<User> list) {
-        return list.stream().sorted(Comparator.comparing(i -> i.getName().length())).collect(Collectors.toList());
+        return list.stream()
+                .sorted(Comparator.comparing(i -> i.getName().length()))
+                .collect(Collectors.toList());
     }
 
     public List<User> sortByAllFields(List<User> list) {
-        return list.stream().sorted(Comparator.comparing(User::getName).thenComparing(User::getAge)).collect(Collectors.toList());
+        return list.stream()
+                .sorted(Comparator.comparing(User::getName)
+                .thenComparing(User::getAge))
+                .collect(Collectors.toList());
      }
 }
