@@ -11,10 +11,12 @@ import static org.hamcrest.Matchers.is;
 
 public class IterArrayTest {
     private Iterator<Integer> it;
+    private Iterator<Integer> it2;
 
     @Before
     public void setUp(){
         it = new IterArray(new int[][]{{1}, {3, 4}, {7}});
+        it2 = new IterArray(new int[][]{{1, 2, 3, 4, 5}, {3, 4}, {7}});
     }
 
     @Test
@@ -46,5 +48,15 @@ public class IterArrayTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(7));
         assertThat(it.hasNext(), is(false));
+    }
+
+    @Test
+    public void name() {
+        it2.next();
+        it2.next();
+        it2.next();
+        it2.next();
+        Integer next = it2.next();
+        assertThat(next, is(5));
     }
 }
