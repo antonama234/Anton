@@ -21,10 +21,12 @@ public class IterArray implements Iterator<Integer> {
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
-        } else if (x == array[y].length) {
+        }
+        int rst = array[y][x++];
+        if (x == array[y].length) {
             y++;
             x = 0;
         }
-        return array[y][x++];
+        return rst;
     }
 }
