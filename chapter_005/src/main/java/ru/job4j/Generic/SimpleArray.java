@@ -5,17 +5,21 @@ import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
     Object[] objects;
-    private int position = 0;
+    private int size;
+
+    public int size() {
+        return objects.length;
+    }
 
     public SimpleArray(int size) {
         this.objects = new Object[size];
     }
 
     public void add(T model) {
-        if (position > objects.length) {
+        if (size > objects.length) {
             throw new IndexOutOfBoundsException();
         } else {
-            this.objects[this.position++] = model;
+            this.objects[this.size++] = model;
         }
     }
 
@@ -39,7 +43,7 @@ public class SimpleArray<T> implements Iterable<T> {
             private int position = 0;
             @Override
             public boolean hasNext() {
-                return position < objects.length;
+                return position < size;
             }
 
             @Override
