@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.Iterator.Converter;
+import ru.job4j.iterator.Converter;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

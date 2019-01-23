@@ -2,7 +2,7 @@ package ru.job4j;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.Iterator.IterArray;
+import ru.job4j.iterator.IterArray;
 
 import java.util.Iterator;
 

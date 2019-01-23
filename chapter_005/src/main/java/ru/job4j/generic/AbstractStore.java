@@ -1,4 +1,4 @@
-package ru.job4j.Generic;
+package ru.job4j.generic;
 
 public class AbstractStore<T extends Base> implements Store<T> {
     private final SimpleArray<T> simpleArray;
@@ -8,7 +8,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     }
 
     public int findIndex(String id) {
-        int index = 0;
+        int index = -1;
         for (int i = 0; i != simpleArray.size(); i++) {
             if (simpleArray.get(i).getId().equals(id)) {
                 i = index;
