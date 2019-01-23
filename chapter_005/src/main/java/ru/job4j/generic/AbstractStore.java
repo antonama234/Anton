@@ -29,7 +29,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model)  {
         boolean rst = false;
-        if (id != null) {
+        if (findIndex(id) != -1 && id != null) {
             simpleArray.set(findIndex(id), model);
             rst = true;
         }
@@ -40,7 +40,7 @@ public class AbstractStore<T extends Base> implements Store<T> {
     @Override
     public boolean delete(String id) {
         boolean rst = false;
-        if (id != null) {
+        if (findIndex(id) != -1 && id != null) {
             simpleArray.remove(findIndex(id));
             rst = true;
         }
