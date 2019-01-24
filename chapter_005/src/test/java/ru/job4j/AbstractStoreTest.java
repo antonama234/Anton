@@ -24,7 +24,7 @@ public class AbstractStoreTest {
         userStore.add(first);
         userStore.add(second);
         userStore.replace("2", third);
-        assertThat(userStore.findById("2"), is(third));
+        assertThat(userStore.get(1), is(third));
     }
 
     @Test

@@ -11,7 +11,8 @@ public class AbstractStore<T extends Base> implements Store<T> {
         int index = -1;
         for (int i = 0; i != simpleArray.size(); i++) {
             if (simpleArray.get(i).getId().equals(id)) {
-                i = index;
+                index = i;
+                break;
             }
         }
         return index;
