@@ -24,7 +24,9 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void set(int index, T model) {
-        objects[index] = model;
+        if (index != 0 && index != size) {
+            this.objects[index] = model;
+        }
     }
 
     public void remove(int index) {
