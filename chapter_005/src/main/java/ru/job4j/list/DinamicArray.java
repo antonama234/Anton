@@ -39,8 +39,6 @@ public class DinamicArray<E> implements Iterable<E> {
             public E next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
-                } else if (!hasNext()) {
-                    throw new ConcurrentModificationException();
                 }
                 return (E) container[position++];
             }
