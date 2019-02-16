@@ -25,6 +25,12 @@ public class DinamicLinkedList<E> implements Iterable<E> {
         return result.date;
     }
 
+    public E delete() {
+        Node<E> temp = first;
+        this.first = first.next;
+        return temp.date;
+    }
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
