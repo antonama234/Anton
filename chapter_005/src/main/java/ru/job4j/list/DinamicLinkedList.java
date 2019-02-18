@@ -31,17 +31,11 @@ public class DinamicLinkedList<E> implements Iterable<E> {
         return result.date;
     }
 
-    public E delete() {
-        Node<E> temp = first;
-        this.first = first.next;
-        return temp.date;
-    }
-
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             int position;
-            int expectedModCount =  modCount;
+            int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
                 if (modCount != expectedModCount) {
@@ -55,7 +49,10 @@ public class DinamicLinkedList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(position++);
+                E tmp = first.date;
+                first = first.next;
+                position++;
+                return tmp;
             }
         };
     }
