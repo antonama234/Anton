@@ -17,6 +17,12 @@ public class DinamicLinkedList<E> implements Iterable<E> {
         this.modCount++;
     }
 
+    public E delete() {
+        Node<E> temp = first;
+        this.first = first.next;
+        return temp.date;
+    }
+
     public E get(int index) {
         Node<E> result = this.first;
         for (int i = 0; i < index; i++) {
