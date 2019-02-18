@@ -1,10 +1,9 @@
 package ru.job4j.list;
 
-public class SimpleStack<T> extends DinamicLinkedList<T>{
-    private DinamicLinkedList<T> list;
+public class SimpleStack<T> {
+    private DinamicLinkedList<T> list = new DinamicLinkedList<>();
 
     public SimpleStack() {
-        list = new DinamicLinkedList();
     }
 
     public T poll() {
