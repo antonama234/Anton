@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 
 public class DinamicLinkedList<E> implements Iterable<E> {
     private Node<E> first;
-    private Node<E> last;
     private int size;
     private int modCount;
 
@@ -16,17 +15,6 @@ public class DinamicLinkedList<E> implements Iterable<E> {
         this.first = newLink;
         this.size++;
         this.modCount++;
-    }
-
-    public void addLast(E value) {
-        Node<E> newLink = new Node<>(value);
-        if (first == null) {
-            first = newLink;
-        } else {
-            last.next = newLink;
-            last = newLink;
-        }
-        size++;
     }
 
     public E delete() {
@@ -41,6 +29,10 @@ public class DinamicLinkedList<E> implements Iterable<E> {
             result = result.next;
         }
         return result.date;
+    }
+
+    public int getSize() {
+        return this.size;
     }
 
     @Override

@@ -13,4 +13,8 @@ public class SimpleStack<T> {
     public void push(T value) {
         list.add(value);
     }
+
+    public boolean isEmpty() {
+        return list.getSize() == 0;
+    }
 }
