@@ -20,6 +20,7 @@ public class DinamicLinkedList<E> implements Iterable<E> {
     public E delete() {
         Node<E> temp = first;
         this.first = first.next;
+        this.size--;
         return temp.date;
     }
 
