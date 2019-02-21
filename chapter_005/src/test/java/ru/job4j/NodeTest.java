@@ -10,14 +10,14 @@ public class NodeTest {
     @Test
     public void whenHaveFourElementsThenFourthLinkToFirst() {
         Node<Integer> first = new Node(1);
-        Node<Integer> two = new Node(2);
+        Node<Integer> second = new Node(2);
         Node<Integer> third = new Node(3);
-        Node<Integer> four = new Node(4);
+        Node<Integer> fourth = new Node(4);
 
-        first.next = two;
-        two.next = third;
-        third.next = four;
-        four.next = first;
-        assertThat(first.hasCycle(first), is(true));
+        first.getNext(second);
+        second.getNext(third);
+        third.getNext(fourth);
+        fourth.getNext(first);
+        assertThat(first.hasCycle(second), is(true));
     }
 }
