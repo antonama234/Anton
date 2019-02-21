@@ -1,18 +1,19 @@
 package ru.job4j.set;
 
+import ru.job4j.list.DinamicArray;
+
 import java.util.Iterator;
 
 public class SimpleSet<E> implements Iterable<E> {
-    private Object[] array;
-    private int size;
+    private DinamicArray<E> array = new DinamicArray<>(5);
 
-    public SimpleSet(int size) {
-        this.array = new Object[size];
-    }
-
-    public void add(E e) {
-        findDuplicate(e);
-        this.array[size++] = e;
+    public boolean add(E e) {
+        boolean rst = false;
+        if (findDuplicate(e)) {
+            this.array.add(e);
+            rst = true;
+        }
+        return rst;
     }
 
    public boolean findDuplicate(E e) {
@@ -25,27 +26,8 @@ public class SimpleSet<E> implements Iterable<E> {
         return rst;
     }
 
-    public E get(int index) {
-        return (E) this.array[index];
-    }
-
-    public int getSize() {
-        return array.length;
-    }
-
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
-            int position;
-             @Override
-            public boolean hasNext() {
-                return position < size;
-            }
-
-            @Override
-            public E next() {
-                return (E) array[position++];
-            }
-        };
+        return this.array.iterator();
     }
 }
