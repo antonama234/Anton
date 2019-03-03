@@ -10,7 +10,7 @@ import java.util.Map;
 public class UserTest {
 
     @Test
-    public void whenAddTwoSameUsersThenHaveTwoDifferentHashCode() {
+    public void whenOverrideOnlyHashCodeThenHaveTwoDifferentObjects() {
     Map<User, Object> map = new HashMap<>();
     User first = new User("Max", 2, new GregorianCalendar(2001, 01, 01));
     User second = new User("Max", 2, new GregorianCalendar(2001, 01, 01));
