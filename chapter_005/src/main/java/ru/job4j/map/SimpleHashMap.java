@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class SimpleHashMap<K, V> implements Iterable {
     private DataItem[] simpleArray;
     private int arraySize;
-    private int elements = 0;
+    private int elements;
 
     public SimpleHashMap(int size) {
         simpleArray = new DataItem[size];
@@ -17,13 +17,24 @@ public class SimpleHashMap<K, V> implements Iterable {
         return hash % arraySize;
     }
 
-    public void insert(K key, V value) {
+    public boolean insert(K key, V value) {
+        boolean rst = false;
         int hashVal = hash(key);
-        while (simpleArray[hashVal] != null) {
-            ++hashVal;
+        if (simpleArray[hashVal] == null) {
+            simpleArray[hashVal] = new DataItem(key, value);
+            elements++;
+            if (elements == arraySize) {
+            DataItem[] newSimpleArray = new DataItem[arraySize*2];
+            for (DataItem item : simpleArray) {
+                if (item != null) {
+                    newSimpleArray[hash((K) item.key)] = item;
+                }
+            }
+            simpleArray = newSimpleArray;
+            rst = true;
+            }
         }
-        simpleArray[hashVal] = new DataItem(key, value);
-        elements++;
+        return rst;
     }
 
     public V get(K key) {
@@ -48,6 +59,28 @@ public class SimpleHashMap<K, V> implements Iterable {
 
     public int getElements() {
         return elements;
+    }
+
+    public int getArraySize() {
+        return arraySize;
+    }
+
+    public static class DataItem<K, V> {
+        private K key;
+        private V value;
+
+        public DataItem(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
     }
 
     @Override

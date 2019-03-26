@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SimpleHashMapTest {
-    SimpleHashMap<Integer, String> table = new SimpleHashMap<>(10);
+    SimpleHashMap<Integer, String> table = new SimpleHashMap<>(5);
 
     @Before
     public void before() {
@@ -25,5 +25,13 @@ public class SimpleHashMapTest {
     public void whenDeleteOneElementHaveOnlyOne() {
         table.delete(5);
         assertThat(table.getElements(), is(1));
+    }
+
+    @Test
+    public void whenHashMapIsFullThenIncreaseSize() {
+        table.insert(17, "ThirdElement");
+        table.insert(64, "FourthElement");
+        table.insert(11, "FifthElement");
+        assertThat(table.getArraySize(), is(10));
     }
 }
