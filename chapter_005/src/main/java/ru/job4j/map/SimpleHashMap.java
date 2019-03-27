@@ -23,16 +23,8 @@ public class SimpleHashMap<K, V> implements Iterable {
         if (simpleArray[hashVal] == null) {
             simpleArray[hashVal] = new DataItem(key, value);
             elements++;
-            if (elements == arraySize) {
-            DataItem[] newSimpleArray = new DataItem[arraySize*2];
-            for (DataItem item : simpleArray) {
-                if (item != null) {
-                    newSimpleArray[hash((K) item.key)] = item;
-                }
-            }
-            simpleArray = newSimpleArray;
+            resize();
             rst = true;
-            }
         }
         return rst;
     }
@@ -55,6 +47,18 @@ public class SimpleHashMap<K, V> implements Iterable {
             elements--;
             }
         return rst;
+    }
+
+    public void resize() {
+        if (elements == arraySize) {
+            DataItem[] newSimpleArray = new DataItem[arraySize*2];
+            for (DataItem<K, V> item : simpleArray) {
+                if (item != null) {
+                    newSimpleArray[hash(item.getKey())] = item;
+                }
+            }
+            simpleArray = newSimpleArray;
+        }
     }
 
     public int getElements() {

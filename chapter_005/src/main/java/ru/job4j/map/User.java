@@ -1,9 +1,13 @@
 package ru.job4j.map;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class User {
+
+    Map<String, String> stringStringMap = new HashMap<>();
     String name;
     int children;
     Calendar birthday;
