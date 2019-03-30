@@ -1,20 +1,20 @@
 package ru.job4j.map;
 
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class SimpleHashMap<K, V> implements Iterable {
     private DataItem[] simpleArray;
-    private int arraySize;
     private int elements;
+    private double capacity = 0.75;
 
     public SimpleHashMap(int size) {
         simpleArray = new DataItem[size];
-        arraySize = size;
     }
 
     public int hash(K key) {
         int hash = key.hashCode();
-        return hash % arraySize;
+        return hash % simpleArray.length;
     }
 
     public boolean insert(K key, V value) {
@@ -50,8 +50,8 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public void resize() {
-        if (elements == arraySize) {
-            DataItem[] newSimpleArray = new DataItem[arraySize*2];
+        if (elements >= simpleArray.length*capacity) {
+            DataItem[] newSimpleArray = new DataItem[simpleArray.length*2];
             for (DataItem<K, V> item : simpleArray) {
                 if (item != null) {
                     newSimpleArray[hash(item.getKey())] = item;
@@ -66,7 +66,7 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public int getArraySize() {
-        return arraySize;
+        return simpleArray.length;
     }
 
     public static class DataItem<K, V> {
@@ -94,12 +94,12 @@ public class SimpleHashMap<K, V> implements Iterable {
 
             @Override
             public boolean hasNext() {
-                return position < arraySize;
+                return position < simpleArray.length;
             }
 
             @Override
             public Object next() {
-                for (int i = position; i < arraySize; i++) {
+                for (int i = position; i < simpleArray.length; i++) {
                     if (simpleArray[i] != null){
                         position = i++;
                         return simpleArray[i];
