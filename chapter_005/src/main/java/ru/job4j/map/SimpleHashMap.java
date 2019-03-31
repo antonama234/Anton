@@ -1,12 +1,14 @@
 package ru.job4j.map;
 
-import java.util.HashMap;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleHashMap<K, V> implements Iterable {
     private DataItem[] simpleArray;
     private int elements;
     private double capacity = 0.75;
+    private int modCount;
 
     public SimpleHashMap(int size) {
         simpleArray = new DataItem[size];
@@ -14,7 +16,7 @@ public class SimpleHashMap<K, V> implements Iterable {
 
     public int hash(K key) {
         int hash = key.hashCode();
-        return hash % simpleArray.length;
+        return hash % (simpleArray.length - 1);
     }
 
     public boolean insert(K key, V value) {
@@ -23,6 +25,7 @@ public class SimpleHashMap<K, V> implements Iterable {
         if (simpleArray[hashVal] == null) {
             simpleArray[hashVal] = new DataItem(key, value);
             elements++;
+            modCount++;
             resize();
             rst = true;
         }
@@ -45,6 +48,7 @@ public class SimpleHashMap<K, V> implements Iterable {
             simpleArray[hashVal] = null;
             rst = true;
             elements--;
+            modCount++;
             }
         return rst;
     }
@@ -91,14 +95,24 @@ public class SimpleHashMap<K, V> implements Iterable {
     public Iterator iterator() {
         return new Iterator() {
             private int position;
+            private int expectModCount = modCount;
 
             @Override
             public boolean hasNext() {
+                if (this.expectModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return position < simpleArray.length;
             }
 
             @Override
             public Object next() {
+                if (this.expectModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
                 for (int i = position; i < simpleArray.length; i++) {
                     if (simpleArray[i] != null){
                         position = i++;
