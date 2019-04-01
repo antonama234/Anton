@@ -44,7 +44,7 @@ public class SimpleHashMap<K, V> implements Iterable {
     public boolean delete(K key) {
         boolean rst = false;
         int hashVal = hash(key);
-        if (simpleArray[hashVal].getKey() == key) {
+        if ((simpleArray[hashVal].key.hashCode() == key.hashCode()) && (simpleArray[hashVal].key.equals(key))) {
             simpleArray[hashVal] = null;
             rst = true;
             elements--;
@@ -102,7 +102,7 @@ public class SimpleHashMap<K, V> implements Iterable {
                 if (this.expectModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return position < simpleArray.length;
+                return position < elements;
             }
 
             @Override
