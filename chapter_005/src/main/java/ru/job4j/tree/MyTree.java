@@ -16,7 +16,7 @@ public class MyTree<E extends Comparable<E>> implements SimpleTree<E> {
         Optional<Node<E>> par = findBy(parent);
         if (par.isPresent()) {
             Optional<Node<E>> childNode = findBy(child);
-            if (childNode.isPresent()) {
+            if (!childNode.isPresent()) {
                 par.get().add(new Node<>(child));
                 rst = true;
                 modCount++;
