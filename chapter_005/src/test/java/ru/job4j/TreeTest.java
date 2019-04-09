@@ -30,4 +30,16 @@ public class TreeTest {
                 is(false)
         );
     }
+
+    @Test
+    public void whenHaveThreeElementsThenFalse() {
+        MyTree<Integer> tree = new MyTree<>(1);
+        tree.add(1, 2);
+        tree.add(2, 3);
+        tree.add(3, 4);
+        assertThat(
+                tree.isBinary(),
+                is(false)
+        );
+    }
 }
