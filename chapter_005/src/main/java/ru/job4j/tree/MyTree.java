@@ -79,7 +79,7 @@ public class MyTree<E extends Comparable<E>> implements SimpleTree<E> {
                 for (Node<E> node : node.leaves()) {
                     data.offer(node);
                 }
-                result = (Node<E>) node.getValue();
+                result = node;
                 node = data.poll();
                 return result;
             }

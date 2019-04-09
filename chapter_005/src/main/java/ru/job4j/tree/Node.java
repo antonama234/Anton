@@ -10,10 +10,6 @@ public class Node<E extends Comparable<E>> {
         this.value = value;
     }
 
-    public E getValue() {
-        return value;
-    }
-
     public void add(Node<E> child) {
         this.children.add(child);
     }
