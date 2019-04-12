@@ -27,6 +27,7 @@ public class AnalyzeTest {
         List<Analyze.User> current = new ArrayList<>(previous);
         current.add(new Analyze.User(4, "Vera"));
         current.add(new Analyze.User(5, "Vladimir"));
+        current.set(0, new Analyze.User(1, "Stepan"));
         current.remove(1);
         assertThat(analyze.diff(previous, current).toString(), is("added=2, changed=1, deleted=1"));
     }

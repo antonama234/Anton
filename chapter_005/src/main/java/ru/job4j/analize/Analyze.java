@@ -1,29 +1,32 @@
 package ru.job4j.analize;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Analyze {
 
     public Info diff(List<User> previous, List<User> current) {
         Info info = new Info(0, 0, 0);
+        Map<Integer, User> map = new HashMap<>();
+        int count = 0;
         if (current.containsAll(previous)) {
             throw new NoChangesExeption("Изменений не было.");
         } else {
             for (User user : previous) {
-                if (!current.contains(user)) {
-                    info.deleted++;
-                }
-            }
-            for (User user : previous) {
-                if (current.contains(user.id) && !current.contains(user.name)) {
-                    info.changed++;
-                }
+                map.put(user.id, user);
             }
             for (User user : current) {
-                if (!previous.contains(user)) {
-                    info.added++;
+                User tmp = map.get(user.id);
+                if (tmp != null) {
+                    if (!tmp.name.equals(user.name)) {
+                        info.changed++;
+                    }
+                    count++;
                 }
             }
+            info.deleted = previous.size() - count;
+            info.added = current.size() - count;
         }
         return info;
     }
@@ -51,11 +54,10 @@ public class Analyze {
 
         @Override
         public String toString() {
-            return "Info{" +
+            return
                     "added=" + added +
                     ", changed=" + changed +
-                    ", deleted=" + deleted +
-                    '}';
+                    ", deleted=" + deleted;
         }
     }
 }
