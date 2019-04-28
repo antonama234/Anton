@@ -11,17 +11,17 @@ public class PingPong extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        int limitX = 300;
-        int limitY = 300;
+        int limitX = 200;
+        int limitY = 200;
         Group group = new Group();
         Rectangle rect = new Rectangle(1, 100, 10, 10);
         group.getChildren().add(rect);
-        new Thread(new RectangleMove(rect)).start();
+        Thread thread = new Thread(new RectangleMove(rect));
+        thread.start();
         stage.setScene(new Scene(group, limitX, limitY));
         stage.setTitle(JOB4J);
         stage.setResizable(false);
         stage.show();
+        stage.setOnCloseRequest(even -> thread.interrupt());
     }
-
-
 }
