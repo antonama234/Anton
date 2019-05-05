@@ -13,10 +13,6 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getAmount() {
         return amount;
     }

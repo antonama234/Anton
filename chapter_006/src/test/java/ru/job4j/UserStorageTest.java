@@ -1,37 +1,43 @@
 package ru.job4j;
 
+import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.synchronization.User;
 import ru.job4j.synchronization.UserStorage;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class UserStorageTest {
-    private class ThreadUser extends Thread {
-        private final UserStorage storage;
-        private final User first = new User(1, 500);
-        private final User second = new User(2, 0);
+    private UserStorage storage;
+    private User first = new User(0, 500);
+    private User second = new User(1, 0);
+    private User third = new User(2, 100);
 
-        private ThreadUser(UserStorage storage) {
-            this.storage = storage;
-        }
-
-        @Override
-        public void run() {
-            this.storage.transfer(1, 2, 200);
-        }
+    @Before
+    public void before() {
+        storage = new UserStorage();
+        storage.add(first);
+        storage.add(second);
     }
 
     @Test
-    public void when() throws InterruptedException {
-        final UserStorage storage = new UserStorage();
-        Thread first = new UserStorageTest.ThreadUser(storage);
-        Thread second = new UserStorageTest.ThreadUser(storage);
-        first.start();
-        second.start();
-        first.join();
-        second.join();
-        assertThat(storage, is(2));
+    public void whenAddThirdUserAndDeleteFirst() {
+        storage.add(third);
+        storage.delete(first);
+        assertThat(storage.findById(2).getAmount(), is(100));
+    }
+
+    @Test
+    public void whenUpdateUser() {
+        storage.update(new User(1, 400));
+        assertThat(storage.findById(1).getAmount(), is(400));
+    }
+
+    @Test
+    public void whenTransferTwuHundredFronFirstThenHaveMoreMoneyAtSecond() {
+        storage.transfer(first.getId(), second.getId(), 200);
+        assertThat(storage.findById(1).getAmount(), is(200));
     }
 }
+
